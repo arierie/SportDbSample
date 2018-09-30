@@ -11,6 +11,9 @@ import retrofit2.http.Query
 
 interface ApiService {
 
+    @GET("eventspastleague.php")
+    fun loadLastMatches(@Query("id") id: Int) : Call<EventListResponse>
+
     @GET("eventsnextleague.php")
     fun loadNextMatches(@Query("id") id: Int) : Call<EventListResponse>
 

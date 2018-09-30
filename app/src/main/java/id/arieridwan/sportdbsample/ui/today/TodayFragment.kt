@@ -1,4 +1,4 @@
-package id.arieridwan.sportdbsample.match.nextmatch
+package id.arieridwan.sportdbsample.ui.today
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,11 +8,13 @@ import android.view.ViewGroup
 
 import id.arieridwan.sportdbsample.R
 
-class NextMatchFragment : Fragment() {
+class TodayFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_next_match, container, false)
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_today, container, false)
+    }
 
 
 }

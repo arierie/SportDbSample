@@ -1,4 +1,4 @@
-package id.arieridwan.sportdbsample.match.lastmatch
+package id.arieridwan.sportdbsample.ui.nextmatch
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,11 +8,11 @@ import android.view.ViewGroup
 
 import id.arieridwan.sportdbsample.R
 
-class LastFragment : Fragment() {
+class NextMatchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_last, container, false)
+            inflater.inflate(R.layout.fragment_next_match, container, false)
 
 
 }
