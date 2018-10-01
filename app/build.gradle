@@ -36,7 +36,6 @@ dependencies {
 
     // kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
     implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
 
@@ -44,13 +43,12 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation 'ru.gildor.coroutines:kotlin-coroutines-retrofit:0.11.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'ru.gildor.coroutines:kotlin-coroutines-retrofit:0.11.0'
-    implementation "com.squareup.retrofit2:retrofit-mock:$retrofit_version"
 
-    // optional
-    implementation 'com.patloew.navigationviewfragmentadapters:adapters:0.3.0'
+    // di
+    implementation "org.koin:koin-android:$koin_version"
 
     // testing
     implementation 'com.android.support:support-v4:28.0.0'
