@@ -1,6 +1,7 @@
 package id.arieridwan.sportdbsample.ui.today
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -22,6 +23,8 @@ class TodayFragment : Fragment(), TodayView {
     private lateinit var todayPresenter: TodayPresenter
     private lateinit var adapter: EventAdapter
     private val events: MutableList<EventResponse> = mutableListOf()
+    private var listState: Parcelable? = null
+    private lateinit var eventList: EventListResponse
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? =
@@ -29,11 +32,21 @@ class TodayFragment : Fragment(), TodayView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initList()
         todayPresenter = get()
         todayPresenter.attachView(this)
-        // TODO change hardcoded date with calendar instance time
-        todayPresenter.loadTodayMatch(4328, "2018-10-06")
+
+        if(savedInstanceState == null) {
+            // TODO change hardcoded date with calendar instance time
+            todayPresenter.loadTodayMatch(4328, "2018-10-06")
+        } else {
+            eventList = savedInstanceState.getParcelable(LIST_STATE_KEY)
+            listState = savedInstanceState.getParcelable(SCROLL_STATE_KEY)
+            notifyList(eventList)
+            rv_today_match.layoutManager?.onRestoreInstanceState(listState)
+        }
+
     }
 
     private fun initList() {
@@ -56,6 +69,11 @@ class TodayFragment : Fragment(), TodayView {
     }
 
     override fun showResultList(eventListResponse: EventListResponse) {
+        eventList = eventListResponse
+        notifyList(eventList)
+    }
+
+    private fun notifyList(eventListResponse: EventListResponse) {
         events.clear()
         eventListResponse.events?.let {
             for (i in eventListResponse.events.indices) {
@@ -67,6 +85,17 @@ class TodayFragment : Fragment(), TodayView {
 
     override fun showError() {
         Toast.makeText(context, "Error, failed to get data from server", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(LIST_STATE_KEY, eventList)
+        outState.putParcelable(SCROLL_STATE_KEY, listState)
+    }
+
+    companion object {
+        private const val SCROLL_STATE_KEY = "SCROLL_STATE_KEY"
+        private const val LIST_STATE_KEY = "LIST_STATE_KEY"
     }
 
 }
