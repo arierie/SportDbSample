@@ -1,7 +1,7 @@
 package id.arieridwan.sportdbsample
 
 import android.app.Application
-import android.support.v7.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.gson.GsonBuilder
 import id.arieridwan.sportdbsample.data.repository.MatchRepository
 import id.arieridwan.sportdbsample.data.repository.MatchRepositoryImpl

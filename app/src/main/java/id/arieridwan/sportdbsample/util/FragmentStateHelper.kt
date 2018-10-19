@@ -1,8 +1,8 @@
 package id.arieridwan.sportdbsample.util
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 
 /**
  * Helps save and restore Fragment state outside of an Activity's typical

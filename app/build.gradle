@@ -11,7 +11,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BASE_URL", "\"https://www.thesportsdb.com/api/v1/json/1/\""
     }
     buildTypes {
@@ -25,11 +25,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // android support library
-    implementation "com.android.support:appcompat-v7:$support_library_version"
-    implementation "com.android.support:design:$support_library_version"
-    implementation "com.android.support:cardview-v7:$support_library_version"
-    implementation "com.android.support:support-v4:$support_library_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "androidx.appcompat:appcompat:$material_theme_version"
+    implementation "com.google.android.material:material:$material_theme_version"
+    implementation "androidx.cardview:cardview:$material_theme_version"
+    implementation "androidx.legacy:legacy-support-v4:$material_theme_version"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.7.1'
@@ -51,12 +51,11 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
 
     // testing
-    implementation 'com.android.support:support-v4:28.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation "com.android.support.test:runner:$support_test_version"
-    androidTestImplementation "com.android.support.test:rules:$support_test_version"
-    implementation "com.android.support.test.espresso:espresso-idling-resource:$espresso_version"
-    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$espresso_version") {
+    androidTestImplementation 'androidx.test:runner:1.1.0-beta02'
+    androidTestImplementation 'androidx.test:rules:1.1.0-beta02'
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.1.0-beta02'
+    androidTestImplementation('androidx.test.espresso:espresso-contrib:3.1.0-beta02') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'design'

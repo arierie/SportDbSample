@@ -1,10 +1,10 @@
 package id.arieridwan.sportdbsample.ui
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import id.arieridwan.sportdbsample.R
 import id.arieridwan.sportdbsample.ui.lastmatch.LastFragment
 import id.arieridwan.sportdbsample.ui.nextmatch.NextMatchFragment
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             bottom_navigation.selectedItemId = R.id.lastMatchFragment
         } else {
             val helperState = savedInstanceState.getBundle(STATE_HELPER)
-            stateHelper.restoreHelperState(helperState)
+            helperState?.let { stateHelper.restoreHelperState(it) }
         }
     }
 

@@ -1,9 +1,9 @@
 package id.arieridwan.sportdbsample.ui.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import id.arieridwan.sportdbsample.R
 import id.arieridwan.sportdbsample.data.response.EventResponse
 import id.arieridwan.sportdbsample.util.CommonUtils
