@@ -50,6 +50,9 @@ dependencies {
     // di
     implementation "org.koin:koin-android:$koin_version"
 
+    implementation 'com.evernote:android-state:1.4.1'
+    kapt 'com.evernote:android-state-processor:1.4.1'
+
     // testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-beta02'

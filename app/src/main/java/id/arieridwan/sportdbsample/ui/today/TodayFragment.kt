@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.evernote.android.state.State
+import com.evernote.android.state.StateSaver
 
 import id.arieridwan.sportdbsample.R
 import id.arieridwan.sportdbsample.data.response.EventListResponse
@@ -23,12 +25,21 @@ class TodayFragment : Fragment(), TodayView {
     private lateinit var todayPresenter: TodayPresenter
     private lateinit var adapter: EventAdapter
     private val events: MutableList<EventResponse> = mutableListOf()
-    private var listState: Parcelable? = null
-    private lateinit var eventList: EventListResponse
+
+    @State
+    var listState: Parcelable? = null
+
+    @State
+    lateinit var eventList: EventListResponse
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_today, container, false)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        StateSaver.restoreInstanceState(this, savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,8 +52,6 @@ class TodayFragment : Fragment(), TodayView {
             // TODO change hardcoded date with calendar instance time
             todayPresenter.loadTodayMatch(4328, "2018-10-06")
         } else {
-            eventList = savedInstanceState.getParcelable(LIST_STATE_KEY)
-            listState = savedInstanceState.getParcelable(SCROLL_STATE_KEY)
             notifyList(eventList)
             rv_today_match.layoutManager?.onRestoreInstanceState(listState)
         }
@@ -89,13 +98,7 @@ class TodayFragment : Fragment(), TodayView {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(LIST_STATE_KEY, eventList)
-        outState.putParcelable(SCROLL_STATE_KEY, listState)
-    }
-
-    companion object {
-        private const val SCROLL_STATE_KEY = "SCROLL_STATE_KEY"
-        private const val LIST_STATE_KEY = "LIST_STATE_KEY"
+        StateSaver.saveInstanceState(this, outState)
     }
 
 }
