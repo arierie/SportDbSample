@@ -11,6 +11,7 @@ buildscript {
     ext.material_theme_version = '1.0.0'
     ext.anko_version = '0.10.5'
     ext.koin_version = '1.0.1'
+    ext.archVersion = '1.1.0'
     repositories {
         google()
         jcenter()

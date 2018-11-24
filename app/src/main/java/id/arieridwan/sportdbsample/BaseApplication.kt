@@ -6,12 +6,13 @@ import com.google.gson.GsonBuilder
 import id.arieridwan.sportdbsample.data.repository.MatchRepository
 import id.arieridwan.sportdbsample.data.repository.MatchRepositoryImpl
 import id.arieridwan.sportdbsample.data.service.ApiService
-import id.arieridwan.sportdbsample.ui.lastmatch.LastMatchPresenter
+import id.arieridwan.sportdbsample.ui.lastmatch.LastMatchViewModel
 import id.arieridwan.sportdbsample.ui.nextmatch.NextMatchPresenter
 import id.arieridwan.sportdbsample.ui.today.TodayPresenter
 import id.arieridwan.sportdbsample.util.CoroutinesContextProvider
 import okhttp3.OkHttpClient
 import org.koin.android.ext.android.startKoin
+import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
@@ -38,9 +39,10 @@ class BaseApplication: Application() {
         single<MatchRepository> { MatchRepositoryImpl(get()) }
         single { CoroutinesContextProvider() }
         // Simple Presenter Factory
-        factory { LastMatchPresenter(get(), get()) }
         factory { NextMatchPresenter(get(), get()) }
         factory { TodayPresenter(get(), get()) }
+        // Simple instance of ViewModel
+        viewModel { LastMatchViewModel(get(), get()) }
     }
 
     override fun onCreate() {
