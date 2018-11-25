@@ -2,8 +2,9 @@ package id.arieridwan.sportdbsample.ui.nextmatch
 
 import id.arieridwan.sportdbsample.data.repository.MatchRepository
 import id.arieridwan.sportdbsample.util.CoroutinesContextProvider
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.withContext
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import ru.gildor.coroutines.retrofit.await
 
@@ -26,7 +27,7 @@ class NextMatchPresenter(private val matchRepository: MatchRepository,
 
     fun loadNextMatch(leagueId: Int) {
         nextMatchView?.showLoading()
-        launch(contextProvider.main) {
+        GlobalScope.launch(contextProvider.main) {
             val data = withContext(contextProvider.io) { matchRepository.loadNextMatch(leagueId) }
             try {
                 nextMatchView?.showResultList(data.await())
